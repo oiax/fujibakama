@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20141109123934) do
     t.datetime "updated_at"
   end
 
+  add_index "events", ["prefecture_id"], name: "events_prefecture_id_fk", using: :btree
+
   create_table "prefectures", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -34,5 +36,11 @@ ActiveRecord::Schema.define(version: 20141109123934) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "schedule_items", ["event_id"], name: "schedule_items_event_id_fk", using: :btree
+
+  add_foreign_key "events", "prefectures", name: "events_prefecture_id_fk"
+
+  add_foreign_key "schedule_items", "events", name: "schedule_items_event_id_fk"
 
 end

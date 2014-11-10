@@ -7,5 +7,7 @@ class CreateScheduleItems < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_foreign_key :schedule_items, :events
   end
 end

@@ -7,5 +7,7 @@ class CreateEvents < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_foreign_key :events, :prefectures
   end
 end
