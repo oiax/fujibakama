@@ -1,0 +1,29 @@
+<table>
+  <thead>
+    <tr>
+      <th>タイトル</th>
+      <th>都道府県</th>
+      <th>会場</th>
+      <th>日程</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @events.each do |event| %>
+    <tr>
+      <td><%= event.title %></td>
+      <td><%= event.prefecture.name %></td>
+      <td><%= event.venue %></td>
+      <td>
+        <ul>
+          <% event.schedule_items.each do |item| %>
+          <li>
+            <%= item.starts_at.strftime('%Y/%m/%d %H:%M') %> 〜
+            <%= item.ends_at.strftime('%Y/%m/%d %H:%M') %>
+          </li>
+          <% end %>
+        </ul>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
