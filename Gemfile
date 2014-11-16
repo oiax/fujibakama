@@ -14,6 +14,8 @@ gem 'spring',        group: :development
 gem 'foreigner', '~> 1.6.1'
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'autoprefixer-rails', '~> 4.0.0'
+gem 'kaminari', '~> 0.16.1'
+gem 'kaminari-i18n', '~> 0.2.0'
 
 group :test do
   gem 'rspec-rails', '~> 3.1.0'
