@@ -12,6 +12,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'foreigner', '~> 1.6.1'
+gem 'bootstrap-sass', '~> 3.3.1'
+gem 'autoprefixer-rails', '~> 4.0.0'
 
 group :test do
   gem 'rspec-rails', '~> 3.1.0'
