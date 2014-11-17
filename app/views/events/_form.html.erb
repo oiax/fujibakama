@@ -1,0 +1,26 @@
+<%= f.fields_for :event, f.object.event do |g| %>
+  <div class="form-group">
+    <%= g.label :title, 'タイトル', class: 'col-xs-2 control-label' %>
+    <div class="col-xs-6">
+      <%= g.text_field :title, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= g.label :prefecture_id, '都道府県', class: 'col-xs-2 control-label' %>
+    <div class="col-xs-2">
+      <%= g.select :prefecture_id, Prefecture.all.map { |p| [ p.name, p.id ] }, {},
+        class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= g.label :venue, '会場', class: 'col-xs-2 control-label' %>
+    <div class="col-xs-6">
+      <%= g.text_field :venue, class: 'form-control' %>
+    </div>
+  </div>
+<% end %>
+<div class="form-group">
+  <div class="col-xs-offset-2 col-sm-10">
+    <button type="submit" class="btn btn-primary">更新</button>
+  </div>
+</div>

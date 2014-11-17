@@ -7,6 +7,7 @@
       <th>都道府県</th>
       <th>会場</th>
       <th>日程</th>
+      <th>アクション</th>
     </tr>
   </thead>
   <tbody>
@@ -24,6 +25,9 @@
           </li>
           <% end %>
         </ul>
+      </td>
+      <td>
+        <%= link_to '編集', [ :edit, event ], class: 'btn btn-default' %>
       </td>
     </tr>
     <% end %>
