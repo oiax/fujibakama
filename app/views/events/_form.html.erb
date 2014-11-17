@@ -19,6 +19,27 @@
     </div>
   </div>
 <% end %>
+<% f.object.schedule_items.each_with_index do |item, index| %>
+  <%= f.fields_for :schedule_items, item, index: index do |g| %>
+    <div class="form-group">
+      <label class="col-xs-2 control-label">日程(<%= index + 1 %>)</label>
+      <%= g.label :start_date, "開始", class: 'col-xs-1 control-label' %>
+      <div class="col-xs-2">
+        <%= g.text_field :start_date, type: 'date', class: 'form-control' %>
+      </div>
+      <div class="col-xs-2">
+        <%= g.text_field :start_time, type: 'time', class: 'form-control' %>
+      </div>
+      <%= g.label :end_date, "終了", class: 'col-xs-1 control-label' %>
+      <div class="col-xs-2">
+        <%= g.text_field :end_date, type: 'date', class: 'form-control' %>
+      </div>
+      <div class="col-xs-2">
+        <%= g.text_field :end_time, type: 'time', class: 'form-control' %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
 <div class="form-group">
   <div class="col-xs-offset-2 col-sm-10">
     <button type="submit" class="btn btn-primary">更新</button>

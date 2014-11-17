@@ -1,12 +1,13 @@
 class EventForm
   include ActiveModel::Model
 
-  attr_accessor :event
+  attr_accessor :event, :schedule_items
 
   delegate :persisted?, to: :event
 
   def initialize(event)
     @event = event
+    @schedule_items = event.schedule_items
   end
 
   def update_attributes(params)
