@@ -32,6 +32,13 @@
         <div class="col-xs-2">
           <%= g.text_field :start_time, type: 'time', class: 'form-control', required: true %>
         </div>
+        <% if g.object.persisted? %>
+        <div class="col-xs-2">
+          <label>
+            <%= g.check_box :_destroy, class: 'destroy-item' %> 削除する
+          </label>
+        </div>
+        <% end %>
       </div>
       <div class="form-group">
         <%= g.label :end_date, "終了日時", class: 'col-xs-2 col-xs-offset-2 control-label' %>

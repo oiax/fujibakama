@@ -18,7 +18,6 @@ class EventForm
         item = schedule_items.detect { |i| i.id == id.to_i }
         item.assign_attributes(attributes)
       else
-        #@schedule_items << 
         event.schedule_items.build(attributes)
       end
     end
@@ -26,7 +25,7 @@ class EventForm
     if valid?
       ActiveRecord::Base.transaction do
         event.save!
-        schedule_items.map(&:save!)
+        schedule_items.map(&:save_or_destroy!)
       end
     end
   end
@@ -43,6 +42,8 @@ class EventForm
 
   def schedule_item_params
     @params.permit(
-      schedule_items: [ :id, :start_date, :start_time, :end_date, :end_time ])
+      schedule_items: [
+        :id, :start_date, :start_time, :end_date, :end_time, :_destroy
+      ])
   end
 end

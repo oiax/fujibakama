@@ -12,6 +12,7 @@ $(document).on("ready page:load", function () {
       fs0.addClass('added').data('index', index + 1);
 
       row0.find('input[type="hidden"]').remove();
+      row0.find('input[type="checkbox"]').parent().remove();
       row0.find('label:nth-of-type(1)').text("日程(" + (index + 1) + ")");
       row0.find('label:nth-of-type(2)')
         .attr('for', 'event_form_schedule_items_' + index + '_start_date');
@@ -41,6 +42,22 @@ $(document).on("ready page:load", function () {
       fs.remove();
       if (form.find('fieldset.added').length == 0) {
         form.find('#remove-item').addClass('disabled');
+      }
+    });
+
+    form.find('.destroy-item').on('click', function() {
+      if ($(this).is(':checked')) {
+        $(this).closest('fieldset')
+          .addClass('disabled')
+          .find('input[type="date"], input[type="time"]')
+          .attr('disabled', 'disabled');
+        if (form.find('input[type="checkbox"]:not(:checked)').length == 1) {
+          form.find('input[type="checkbox"]:not(:checked)').attr('disabled', 'disabled');
+        }
+      } else {
+        $(this).closest('fieldset').find('input')
+          .removeAttr('disabled').removeClass('disabled');
+        form.find('input[type="checkbox"]').removeAttr('disabled');
       }
     });
   }

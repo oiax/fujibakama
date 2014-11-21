@@ -23,6 +23,7 @@ class ScheduleItem < ActiveRecord::Base
   end
 
   attr_writer :start_date, :end_date, :start_time, :end_time
+  attr_accessor :_destroy
 
   def start_date
     @start_date ||= starts_at.try(:strftime, '%Y-%m-%d')
@@ -38,6 +39,14 @@ class ScheduleItem < ActiveRecord::Base
 
   def end_time
     @end_time ||= ends_at.try(:strftime, '%H:%M')
+  end
+
+  def save_or_destroy!
+    if _destroy == '1'
+      destroy if persisted?
+    else
+      save!
+    end
   end
 
   private
