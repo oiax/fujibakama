@@ -16,8 +16,6 @@ gem 'bootstrap-sass', '~> 3.3.1'
 gem 'autoprefixer-rails', '~> 4.0.0'
 gem 'kaminari', '~> 0.16.1'
 gem 'kaminari-i18n', '~> 0.2.0'
-#gem 'date_validator', '~> 0.7.1'
-gem 'jc-validates_timeliness', '~> 3.1.1'
 
 group :test do
   gem 'rspec-rails', '~> 3.1.0'

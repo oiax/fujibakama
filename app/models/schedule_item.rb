@@ -4,10 +4,11 @@ class ScheduleItem < ActiveRecord::Base
   before_validation do
     self.start_time.strip! if self.start_time.kind_of?(String)
     self.end_time.strip! if self.end_time.kind_of?(String)
-    parse_datetime_strings
+    self.starts_at = parse_datetime_strings(start_date, start_time)
+    self.ends_at = parse_datetime_strings(end_date, end_time)
   end
 
-  validates :start_date, :end_date, timeliness: true
+  validates :start_date, :end_date, date_string: true
   validates :start_time, :end_time,
     format: { with: /\A([01]?\d|2[0-3]):[0-5]\d\z/, allow_blank: nil }
 
@@ -41,17 +42,10 @@ class ScheduleItem < ActiveRecord::Base
 
   private
 
-  def parse_datetime_strings
-    if start_date && start_time
+  def parse_datetime_strings(date, time)
+    if date && time
       begin
-        self.starts_at = Time.zone.parse("#{start_date} #{start_time}")
-      rescue ArgumentError
-      end
-    end
-
-    if end_date && end_time
-      begin
-        self.ends_at = Time.zone.parse("#{end_date} #{end_time}")
+        Time.zone.parse("#{date} #{time}")
       rescue ArgumentError
       end
     end

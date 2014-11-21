@@ -17,7 +17,7 @@ RSpec.describe ScheduleItem, :type => :model do
     end
 
     example '不正な日付文字列を拒否する' do
-      si = event.schedule_items.build(options.merge(start_date: '20xx-01-00'))
+      si = event.schedule_items.build(options.merge(start_date: '2014-02-30'))
       expect(si).not_to be_valid
       expect(si.errors[:start_date]).not_to be_empty
     end
