@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   def index
-    @events = Event.order(:id).page(params[:page]).per(10)
+    @events = Event.order(:starts_at, :prefecture_id).page(params[:page]).per(10)
   end
 
   def new

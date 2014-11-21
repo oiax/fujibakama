@@ -17,11 +17,13 @@ ActiveRecord::Schema.define(version: 20141109123934) do
     t.integer  "prefecture_id", null: false
     t.string   "title",         null: false
     t.string   "venue",         null: false
+    t.datetime "starts_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "events", ["prefecture_id"], name: "events_prefecture_id_fk", using: :btree
+  add_index "events", ["starts_at"], name: "index_events_on_starts_at", using: :btree
 
   create_table "prefectures", force: true do |t|
     t.string   "name"

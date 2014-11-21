@@ -22,6 +22,13 @@ class ScheduleItem < ActiveRecord::Base
     end
   end
 
+  after_save do
+    if starts_at_changed?
+      event.update_column(:starts_at,
+        event.schedule_items.order(starts_at: :asc).first.starts_at)
+    end
+  end
+
   attr_writer :start_date, :end_date, :start_time, :end_time
   attr_accessor :_destroy
 
