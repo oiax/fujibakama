@@ -32,6 +32,8 @@
       </td>
       <td>
         <%= link_to '編集', [ :edit, event ], class: 'btn btn-default' %>
+        <%= link_to '削除', event, method: :delete, class: 'btn btn-default',
+          data: { confirm: '本当に削除しますか？' } %>
       </td>
     </tr>
     <% end %>
