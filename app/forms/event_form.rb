@@ -14,9 +14,13 @@ class EventForm
     @params = params
     event.assign_attributes(event_params)
     schedule_item_params.fetch(:schedule_items).each_value do |attributes|
-      id = attributes.delete(:id).to_i
-      item = schedule_items.detect { |i| i.id == id }
-      item.assign_attributes(attributes)
+      if id = attributes.delete(:id)
+        item = schedule_items.detect { |i| i.id == id.to_i }
+        item.assign_attributes(attributes)
+      else
+        #@schedule_items << 
+        event.schedule_items.build(attributes)
+      end
     end
 
     if valid?

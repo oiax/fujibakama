@@ -1,50 +1,51 @@
 <%= f.fields_for :event, f.object.event do |g| %>
   <div class="form-group">
-    <%= g.label :title, 'タイトル', class: 'col-xs-2 control-label' %>
+    <%= g.label :title, 'タイトル', class: 'col-xs-2 control-label required' %>
     <div class="col-xs-6">
-      <%= g.text_field :title, class: 'form-control' %>
+      <%= g.text_field :title, class: 'form-control', required: true %>
     </div>
   </div>
   <div class="form-group">
-    <%= g.label :prefecture_id, '都道府県', class: 'col-xs-2 control-label' %>
+    <%= g.label :prefecture_id, '都道府県', class: 'col-xs-2 control-label required' %>
     <div class="col-xs-2">
       <%= g.select :prefecture_id, Prefecture.all.map { |p| [ p.name, p.id ] }, {},
         class: 'form-control' %>
     </div>
   </div>
   <div class="form-group">
-    <%= g.label :venue, '会場', class: 'col-xs-2 control-label' %>
+    <%= g.label :venue, '会場', class: 'col-xs-2 control-label required' %>
     <div class="col-xs-6">
-      <%= g.text_field :venue, class: 'form-control' %>
+      <%= g.text_field :venue, class: 'form-control', required: true %>
     </div>
   </div>
 <% end %>
 <% f.object.schedule_items.each_with_index do |item, index| %>
   <%= f.fields_for :schedule_items, item, index: index do |g| %>
     <div class="form-group">
-      <%= g.hidden_field :id %>
+      <%= g.hidden_field :id if g.object.persisted? %>
       <label class="col-xs-2 control-label">日程(<%= index + 1 %>)</label>
       <%= g.label :start_date, "開始日時", class: 'col-xs-1 control-label' %>
       <div class="col-xs-2">
-        <%= g.text_field :start_date, type: 'date', class: 'form-control' %>
+        <%= g.text_field :start_date, type: 'date', class: 'form-control', required: true %>
       </div>
       <div class="col-xs-2">
-        <%= g.text_field :start_time, type: 'time', class: 'form-control' %>
+        <%= g.text_field :start_time, type: 'time', class: 'form-control', required: true %>
       </div>
     </div>
     <div class="form-group">
       <%= g.label :end_date, "終了日時", class: 'col-xs-1 col-xs-offset-2 control-label' %>
       <div class="col-xs-2">
-        <%= g.text_field :end_date, type: 'date', class: 'form-control' %>
+        <%= g.text_field :end_date, type: 'date', class: 'form-control', required: true %>
       </div>
       <div class="col-xs-2">
-        <%= g.text_field :end_time, type: 'time', class: 'form-control' %>
+        <%= g.text_field :end_time, type: 'time', class: 'form-control', required: true %>
       </div>
     </div>
   <% end %>
 <% end %>
 <div class="form-group">
   <div class="col-xs-offset-2 col-sm-10">
-    <button type="submit" class="btn btn-primary">更新</button>
+    <button type="submit" class="btn btn-primary">完了</button>
+    <%= link_to '戻る', :events, class: 'btn btn-default' %>
   </div>
 </div>
